@@ -3,7 +3,7 @@
 Welcome to my Generative AI repository! This project documents my complete sharing path, starting from the fundamental building blocks of Natural Language Processing (NLP) all the way to building advanced Autonomous Agents.
 
 ## Goal
-My goal is to master the full stack of Generative AI technologies. I am documenting everything I share here to share knowledge and track my progress.
+My goal is to master the full stack of Generative AI technologies. I am documenting everything related to Generative AI here to share knowledge and track my progress.
 
 ## Topics Covered
 
