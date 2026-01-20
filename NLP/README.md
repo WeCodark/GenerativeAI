@@ -1,8 +1,8 @@
-# Natural Language Processing (NLP) Fundamentals 🧠
+# Natural Language Processing (NLP) Fundamentals
 
 This module covers the core techniques used to prepare text data for machine learning models.
 
-## 📂 Files & Concepts
+## Files & Concepts
 
 ### 1. Preprocessing
 *   **`tokenization_nltk.py`**: Breaking text into words or sentences.
@@ -14,7 +14,7 @@ This module covers the core techniques used to prepare text data for machine lea
 *   **`bagOfWords.py`**: Implementing the **Bag of Words** model using `CountVectorizer`. Converts text into a frequency matrix.
 *   **`tf-idf.py`**: Implementing **TF-IDF (Term Frequency-Inverse Document Frequency)**. Highlights important words while downweighting common ones.
 
-## 🚀 How to Run
+## How to Run
 Navigate to the root directory and run any script using Python:
 
 ```bash
@@ -25,5 +25,5 @@ python NLP/bagOfWords.py
 python NLP/tf-idf.py
 ```
 
-## 📝 Notes
+## Notes
 PDF notes explaining these concepts in detail are available in the `Notes/` directory.
