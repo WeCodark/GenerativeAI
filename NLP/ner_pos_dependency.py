@@ -76,7 +76,7 @@ for token in doc:
 # Visualising Dependency Parse Tree
 
 # This creates an HTML file to view dependency tree in browser
-html = displacy.render(doc, style='dep')
+html = displacy.render(doc, style='dep') # jupyter = True (for .ipynb)
 
 with open('dependencyTree.html', 'w', encoding='utf-8') as f:
     f.write(html)
