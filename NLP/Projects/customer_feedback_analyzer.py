@@ -7,8 +7,10 @@ from transformers import pipeline
 
 filterwarnings('ignore')
 
+# Main class to handle all the feedback analysis work.
 class FeedbackAnalyzer:
     def __init__(self):
+        # Constructor: Loading the big AI models here. It might take few seconds.
         print(f'Loding Models....(This step can take some time) ')
         self.sentiment_analyzer = pipeline('sentiment-analysis')
         # self.nlp = spacy.load('en_core_web_sm')
@@ -16,6 +18,7 @@ class FeedbackAnalyzer:
         print(f'Models Loaded Successfully')
 
     def analyze_sentiment(self, reviews):
+        # This function checks if the customer is happy or sad.
         results = []
         for review in reviews:
             sentiment = self.sentiment_analyzer(review)[0]
@@ -27,6 +30,7 @@ class FeedbackAnalyzer:
         return results
     
     def extract_entities(self, reviews):
+        # Here we are pulling out important names like people, places and products from the text.
         # We prepared a bucket to store entities 
         all_entities = {
             'PRODUCT': [],
@@ -49,6 +53,7 @@ class FeedbackAnalyzer:
         return entity_counts
     
     def discover_topics(self, reviews, num_topic = 3):
+        # Let's figure out what people are actually talking about (Topics).
         vectorizer = CountVectorizer(stop_words='english')
         try:
             doc_matrix = vectorizer.fit_transform(reviews) # bag of word matrix
@@ -68,6 +73,7 @@ class FeedbackAnalyzer:
             print(f'Error in topic Discovery: {e}')
 
     def get_summary_stats(self, sentiment_results):
+        # Just calculating some basic numbers and percentages for the report.
         sentiments = [r['label'] for r in sentiment_results]
         total = len(sentiments)
         positive = sentiments.count('POSITIVE')
@@ -81,6 +87,7 @@ class FeedbackAnalyzer:
         }
     
     def analyze_all(self,reviews): 
+        # Master function to run all the analysis one by one. 
         print("=="*50)
         print(f'CUSTOMER FEEDBACK ANALYSIS REPORT')
         print("=="*50)
@@ -109,26 +116,27 @@ class FeedbackAnalyzer:
     
 
 # Visulaziation of our result
+# Simple function to print the output nicely on the screen.
 def print_results(results):
     print(f'=='*50)
     print('Summary Statitics:')
     stats = results['stats']
-    print(f'Total Reviews: {stats['total_reviews']}')
-    print(f'Positive Reviews: {stats['positive_reviews']} ({stats['positive_percentange']}%)')
-    print(f'Negative Reviews: {stats['negative_reviews']} ({stats['negative_percentage']}%)')
+    print(f"Total Reviews: {stats['total_reviews']}")
+    print(f"Positive Reviews: {stats['positive_reviews']} ({stats['positive_percentange']}%)")
+    print(f"Negative Reviews: {stats['negative_reviews']} ({stats['negative_percentage']}%)")
 
     # Sentiment Details
     print("\n" + "=="*20 + "Individual Review Sentiment" + "=="*20)
     for i, result in enumerate(results['sentiment_results'][:5],1):
         sentiment_emoji = "😀" if result['label'] == 'POSITIVE' else "😒"
-        print(f'\n{i}. Review: {result['review']}\n   Sentiment: {result['label']} {sentiment_emoji} (Confidence: {result['confidence']})')
+        print(f"\n{i}. Review: {result['review']}\n   Sentiment: {result['label']} {sentiment_emoji} (Confidence: {result['confidence']})")
     if len(results['sentiment_results']) > 5:
-        print(f'\n ... and {len(results['sentiment_results']) - 5} more reviews analyzed')
+        print(f"\n ... and {len(results['sentiment_results']) - 5} more reviews analyzed")
 
     # Topic Details
     print("\n" + "=="*20 + "Topic Discovery" + "=="*20)
     for topic in results['topics']:
-        print(f'Topic {topic['topic_number']}: ' + ','.join(topic['keywords']))
+        print(f"Topic {topic['topic_number']}: " + ','.join(topic['keywords']))
 
     # Entities Details
     print("\n" + "=="*20 + "Extracted Entities" + "=="*20)
