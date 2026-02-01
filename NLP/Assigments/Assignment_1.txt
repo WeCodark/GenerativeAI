@@ -1,0 +1,36 @@
+ASSIGNMENT 1: Advanced Customer Feedback Analysis
+
+TASKS:
+
+1) UPDATE SENTIMENT ANALYSIS PIPELINE
+   - Research and implement the best sentiment analysis model currently available in the market
+   - Replace the current basic sentiment analysis pipeline with a more advanced model
+   - Consider models like: RoBERTa-base, BERT-large, or DistilBERT fine-tuned for sentiment
+   - Document the model choice and reasoning
+
+2) SEPARATE SENTIMENT-BASED TOPIC ANALYSIS
+   - Separate positive and negative sentiment reviews
+   - Calculate top 10 topics for positive sentiment reviews
+   - Calculate top 10 topics for negative sentiment reviews
+   - Compare and analyze the differences between positive and negative topics
+
+3) LARGE DATASET ANALYSIS
+   - Run the updated code on a dataset with at least 5000 customer reviews
+   - Use existing available datasets (Amazon reviews, Yelp reviews, etc.)
+   - Analyze performance and accuracy on large-scale data
+   - Document processing time and memory usage
+
+4) DATA CONVERSION
+   - Convert the large dataset into Python list format
+   - Ensure proper data cleaning and preprocessing
+   - Handle missing values and text normalization
+   - Save the processed data for future use
+
+DELIVERABLES:
+- Updated customer_feedback_analyzer.py with new sentiment model
+- Separate topic analysis for positive/negative sentiments
+- Performance analysis on 5000+ reviews
+- Processed dataset in Python list format
+- Documentation of model selection and results
+
+All the best for your assignment!

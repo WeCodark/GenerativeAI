@@ -17,5 +17,14 @@ Understanding how machines process human language.
 ## Repository Structure
 *   **`NLP/`**: Contains all code and notes related to traditional NLP techniques.
 
+
+## Installation
+
+To get started with the code in this repository, clone the repo and install the necessary dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
 ---
 *Stay tuned for more updates!*
