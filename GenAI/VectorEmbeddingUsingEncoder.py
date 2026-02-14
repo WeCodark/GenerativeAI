@@ -5,7 +5,8 @@ from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import cos_sim
 
 # Here we are loading the model
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2') 
+# this model have embedding size of 384
 
 # Words to compare
 words = ['king','queen']
@@ -14,7 +15,7 @@ words = ['king','queen']
 embeddings = model.encode(words)
 
 
-# Now we will compute cosine Similarity
+# Now we will compute cosine Similarity 
 similarity = cos_sim(embeddings[0],embeddings[1])
 
 print(f'Similarity: {similarity}')
