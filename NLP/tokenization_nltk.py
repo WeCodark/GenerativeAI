@@ -2,7 +2,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 
 import nltk
 
-# nltk.download('punkt_tab') # Only once
+nltk.download('punkt_tab') # Only once
 # NLTK use a pre trained tokenization model
 # punkt_tab contains rules and data needed to split the text into senteces and words
 
