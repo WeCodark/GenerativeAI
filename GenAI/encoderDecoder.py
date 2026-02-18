@@ -161,7 +161,7 @@ model = Seq2Seq(
     Decoder(len(hindi_vocab), embed_size, hidden_size)
 )
 
-optimizer = tf.keras.optimizers.Adam(0.01)
+optimizer = tf.keras.optimizers.Adam(0.01) # Updates the weight after each iteration
 
 # loss function:
 # from_logits=True means the model outputs raw scores (logits), not probabilities
