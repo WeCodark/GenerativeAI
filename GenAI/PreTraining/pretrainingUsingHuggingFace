@@ -1,0 +1,60 @@
+import torch
+from transformers import AutoModelForCausalLM
+from peft import LoraConfig, get_peft_model
+
+# ---------------------------------------------------
+# 1️⃣ Load GPT-2 base model
+# ---------------------------------------------------
+model = AutoModelForCausalLM.from_pretrained("gpt2")
+
+# ---------------------------------------------------
+# 2️⃣ Define LoRA configuration
+# ---------------------------------------------------
+config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["c_attn"],  # GPT-2 uses c_attn for QKV
+    lora_dropout=0.0,
+    bias="none"
+)
+
+# Apply LoRA
+lora_model = get_peft_model(model, config)
+
+print("LoRA applied successfully!\n")
+
+# ---------------------------------------------------
+# 3️⃣ Get Original Weight (W)
+# ---------------------------------------------------
+W_original = lora_model.transformer.h[0].attn.c_attn.weight
+
+print("Original W shape:", W_original.shape)
+
+# ---------------------------------------------------
+# 4️⃣ Get LoRA Matrices (A and B)
+# ---------------------------------------------------
+A = lora_model.transformer.h[0].attn.c_attn.lora_A["default"].weight
+B = lora_model.transformer.h[0].attn.c_attn.lora_B["default"].weight
+
+print("A shape:", A.shape)
+print("B shape:", B.shape)
+
+# ---------------------------------------------------
+# 5️⃣ Compute Delta W
+# ---------------------------------------------------
+alpha = config.lora_alpha
+r = config.r
+
+delta_W = (alpha / r) * (B @ A)
+
+print("Delta W shape:", delta_W.shape)
+
+# ---------------------------------------------------
+# 6️⃣ Compute Final Effective Weight
+# ---------------------------------------------------
+# Transpose to match GPT-2 Conv1D format
+delta_W = delta_W.T
+
+W_final = W_original + delta_W
+
+print("Final W shape:", W_final.shape)

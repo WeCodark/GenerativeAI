@@ -1,6 +1,9 @@
+# We are building LLM from scratch using transformer Architecture
+
 import tensorflow as tf   # TensorFlow deep learning library
 import numpy as np        # Numerical operations (arrays, matrices)
 import math               # Mathematical functions
+
 
 # Attention Paper: https://arxiv.org/pdf/1706.03762
 # =========================================================
