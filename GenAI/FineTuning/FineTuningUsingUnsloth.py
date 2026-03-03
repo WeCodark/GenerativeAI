@@ -56,7 +56,30 @@ dataset = load_dataset("ServiceNow-AI/R1-Distill-SFT", "v1" ,split="train[:5000]
 dataset = dataset.map(format_prompts, batched=True, remove_columns=dataset.column_names)
 
 # We will define Training Arguments
-trainer = SFTTrainer(
+# trainer = SFTTrainer(
+#     model = model,
+#     tokenizer = tokenizer,
+#     train_dataset = dataset,
+#     dataset_text_field = "text",
+#     max_seq_length = max_seq_length,
+#     args = TrainingArguments(
+#         per_device_train_batch_size=1,
+#         gradient_accumulation_steps=8,
+#         warmup_steps=5,
+#         max_steps=60, # if you want better loss optimization the use more max steps
+#         learning_rate=2e-4,
+#         fp16=not is_bf16_supported(),
+#         bf16=is_bf16_supported(),
+#         logging_steps=1,
+#         optim="adamw_8bit", # it is unsloth custom memory saver
+#         seed=3407,
+#         output_dir="lora_outputs",
+#     )    
+# )
+
+# We will define Training Arguments withour SFT
+
+trainer = FastLanguageModel.get_train_loop(
     model = model,
     tokenizer = tokenizer,
     train_dataset = dataset,
@@ -76,6 +99,7 @@ trainer = SFTTrainer(
         output_dir="lora_outputs",
     )    
 )
+
 
 trainer.train()
 
