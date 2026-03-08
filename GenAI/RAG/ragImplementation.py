@@ -11,6 +11,7 @@ from langchain_core.runnables import RunnablePassthrough # This will help us to 
 import os # This will help us to get the environment variables
 import getpass # This will help us to get the password
 import sys # This will help us to exit the program
+import gradio as gr
 
 # We are using Google Gemini as our LLM model
 GOOGLE_API_KEY = "AIzaSyA8RQH5Z4x2KEJ530lTs5-X5iLrrZncT1E" # Please be careful as we should not expose API KEY
@@ -90,3 +91,19 @@ rag_chain = create_rag_chain(splits)
 # print(output)
 
 # Gradio Setup
+# Alothough we are not using history param, still i am defining it because chatInterface accepts 2 arguments in function
+def respond(message, history):
+    try:
+        return rag_chain.invoke(message)
+    except Exception as e:
+        return f'An error occured {e}'
+
+
+demo = gr.ChatInterface(
+    fn = respond,
+    title = "Harry Potter RAG Explorer",
+    description="You can ask anything about Harry potter based on provided context",
+    textbox=gr.Textbox(placeholder='Ask a question regarding Harry Potter', container=False, scale = 7)
+)
+
+demo.launch(share=True)
