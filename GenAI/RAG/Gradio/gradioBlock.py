@@ -25,3 +25,7 @@ with gr.Blocks() as demo:
     )
 
 demo.launch()
+
+
+
+# Create Gradio UI for the Rag Model we built yesterday

@@ -9,7 +9,7 @@ def greetUser(name):
 
 # Interface does all the heavy lifting and layout design automatically
 
-demo = gr.Interface(
+demo = gr.ChatInterface(
     fn = greetUser,         # The python function we want to run
     inputs = "textbox",     # This create UI Component for input type
     outputs = "textbox"     # This create UI Component for output type
