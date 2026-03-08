@@ -14,7 +14,7 @@ import sys # This will help us to exit the program
 import gradio as gr
 
 # We are using Google Gemini as our LLM model
-GOOGLE_API_KEY = "AIzaSyA8RQH5Z4x2KEJ530lTs5-X5iLrrZncT1E" # Please be careful as we should not expose API KEY
+GOOGLE_API_KEY = "[Ecripted_Key]" # Please be careful as we should not expose API KEY
 os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
 
 def setup_env():
