@@ -13,7 +13,7 @@ import getpass # This will help us to get the password
 import sys # This will help us to exit the program
 
 # We are using Google Gemini as our LLM model
-GOOGLE_API_KEY = "[encripted_key]" # Please be careful as we should not expose API KEY
+GOOGLE_API_KEY = "AIzaSyA8RQH5Z4x2KEJ530lTs5-X5iLrrZncT1E" # Please be careful as we should not expose API KEY
 os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
 
 def setup_env():
@@ -48,7 +48,7 @@ def create_rag_chain(splits):
     print(f'Intialize Vector Store and Create Rag Chain')
     # We need to embbed the data into vectors
     # taskType -> "retrieval_document" for embedding documents
-    embeddings = GoogleGenerativeAIEmbeddings(model_name="gemini-embedding-001",task_type="retrieval_document")
+    embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001",task_type="retrieval_document")
     # We will now pass embedding to my vector store
     vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
     retriever = vectorstore.as_retriever() # This is my context
@@ -85,6 +85,8 @@ file_path = 'harrypotter.txt'
 splits = load_and_split(file_path)
 rag_chain = create_rag_chain(splits)
 
-message = input('Ask Question: ')
-output = rag_chain.invoke(message)
-print(output)
+# message = input('Ask Question: ')
+# output = rag_chain.invoke(message)
+# print(output)
+
+# Gradio Setup
