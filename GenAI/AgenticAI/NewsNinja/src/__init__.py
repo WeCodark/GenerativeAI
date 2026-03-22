@@ -1,0 +1,1 @@
+# NewsNinja - src package
